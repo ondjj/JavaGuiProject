@@ -20,7 +20,7 @@ public class IOEx03 {
 		output = new ByteArrayOutputStream();
 		
 		System.out.println("Input Source : " + Arrays.toString(inSrc));
-		
+				
 		try {
 			while(input.available() > 0) {
 				input.read(temp);
