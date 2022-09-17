@@ -28,8 +28,8 @@ public class TcpIpServer2 {
 				System.out.println(getTime()+"연결 요청을 기다립니다.");
 				Socket socket = serverSocker.accept();
 				System.out.println(getTime()+socket.getInetAddress()+"로부터 연결 요청이 들어왔습니다.");
-				System.out.println("getPort():"+socket.getPort());
-				System.out.println("getLocalPort():"+socket.getLocalPort());
+				System.out.println(getTime()+"getPort():"+socket.getPort());
+				System.out.println(getTime()+"getLocalPort():"+socket.getLocalPort());
 				
 				// 소켓의 출력스트림을 얻는다.
 				OutputStream out = socket.getOutputStream();
