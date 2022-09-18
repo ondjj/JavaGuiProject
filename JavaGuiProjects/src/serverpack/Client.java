@@ -155,7 +155,7 @@ public class Client implements ActionListener, Runnable {
 				if (receiveMsg[0].equals(chatName)) { // 해당 사용자
 					System.exit(0);
 				} else { // 그 외의 사용자
-					jta.append("\t"+receiveMsg[0] + " 님이 종료했습니다\n");
+					jta.append("\t"+"\t"+receiveMsg[0] + " 님이 종료했습니다\n");
 					jta.setCaretPosition(jta.getDocument().getLength());
 				} // else : 그 외 사용자
 			} else { // exit 가 아닐 경우
