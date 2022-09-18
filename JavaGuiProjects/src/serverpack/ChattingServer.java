@@ -3,6 +3,7 @@ package serverpack;
 import java.awt.*;
 import java.io.*;
 import java.net.*;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import javax.swing.*;
 
@@ -15,7 +16,7 @@ public class ChattingServer extends JFrame {
 	private ServerSocket serverSocket = null;
 
 	public ChattingServer() {
-		setTitle("다중 채팅 서버");
+		setTitle("Multi Caht Server");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ta = new JTextArea();
 		add(new JScrollPane(ta));
@@ -27,10 +28,10 @@ public class ChattingServer extends JFrame {
 
 		list = new ArrayList<MultiServerThread>();
 		try {
-			ServerSocket serverSocket = new ServerSocket(5000);
+			ServerSocket serverSocket = new ServerSocket(5050);
 			MultiServerThread mst = null;
 			boolean isStop = true;
-			tf.setText("서버 정상 실행 중입니다. 관리자님!!!");
+			tf.setText("Server is All Clean");
 			System.out.println("isStop : " + isStop);
 			while (isStop) {
 				socket = serverSocket.accept();
@@ -80,12 +81,12 @@ public class ChattingServer extends JFrame {
 				} // while
 
 				list.remove(this);
-				ta.append(socket.getInetAddress() + "IP주소의 사용자께서 종료하셨습니다.\n");
-				tf.setText("남은 사용자 수 : " + list.size());
+				ta.append(getTime()+"$"+socket.getInetAddress() + "IP주소의 사용자께서 종료하셨습니다.\n");
+				tf.setText(getTime()+"$남은 사용자 수 : " + list.size());
 			} catch (Exception e) {
 				list.remove(this);
-				ta.append(socket.getInetAddress() + "IP주소의 사용자께서 비정상 종료하셨습니다.");
-				tf.setText("남은 사용자 수 : " + list.size());
+				ta.append(getTime()+"$"+socket.getInetAddress() + "IP주소의 사용자께서 비정상 종료하셨습니다.");
+				tf.setText(getTime()+"$남은 사용자 수 : " + list.size());
 			}
 		} /// run
 
@@ -97,7 +98,14 @@ public class ChattingServer extends JFrame {
 		} // broadCasting
 
 		public void send(String message) {
-			pw.println(message);
+			pw.println(getTime()+"$"+message);
 		}
 	} // MultiServerThread
+	
+	private String getTime() {
+//		String name = Thread.currentThread().getName();
+		SimpleDateFormat f = new SimpleDateFormat("[hh:mm:ss]");
+
+		return f.format(new Date());
+	}
 }

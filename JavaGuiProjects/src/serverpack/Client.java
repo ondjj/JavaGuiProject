@@ -41,13 +41,13 @@ public class Client implements ActionListener, Runnable {
 		jp1 = new JPanel();// 아래 붙는 판넬
 		jp1.setLayout(new BorderLayout());// 동서남북중앙 레이아웃
 		jtf = new JTextField(30); // 30 글자
-		jbtn = new JButton("종료");// 종료 버튼 생성
+		jbtn = new JButton("대화방 나가기");// 종료 버튼 생성
 		jp1.add(jbtn, BorderLayout.EAST);
 		jp1.add(jtf, BorderLayout.CENTER);
 		// 위쪽에 붙는 판넬 코드
 		jp2 = new JPanel();// 위쪽에 붙는 판넬
 		jp2.setLayout(new BorderLayout());
-		jlb1 = new JLabel("대화명 : [" + chatName + "]");// 대화명 [[홍길동]]
+		jlb1 = new JLabel("닉네임 : [" + chatName + "]");// 대화명 [홍길동]
 		jlb1.setBackground(Color.DARK_GRAY);
 		jlb2 = new JLabel("서버 IP 주소 : " + ip);// IP 주소 : 127.0.0.1
 		jlb2.setBackground(Color.DARK_GRAY);
@@ -55,7 +55,7 @@ public class Client implements ActionListener, Runnable {
 		jp2.add(jlb2, BorderLayout.EAST);
 		// 프레임에 붙이는 코드
 		jta = new JTextArea("", 10, 50); // 초기값, 행(세로), 가로(열)
-		jta.setBackground(Color.DARK_GRAY);// 대화창 배경색 설정
+		jta.setBackground(Color.WHITE);// 대화창 배경색 설정
 		JScrollPane jsp = new JScrollPane(jta, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		jframe.add(jp1, BorderLayout.SOUTH);
@@ -90,7 +90,7 @@ public class Client implements ActionListener, Runnable {
 
 	@Override
 	public void actionPerformed(ActionEvent e) { // 이벤트 처리
-		Object obj = e.getSource(); // 에벤트 발생 위치 얻기
+		Object obj = e.getSource(); // 이벤트 발생 위치 얻기
 		String msg = jtf.getText(); // 채팅 내용 입력 받기
 		if (obj == jtf) { // 입력란에서 엔터를 친 경우
 			if (msg == null || msg.length() == 0) {// 내용이 없는 경우
@@ -116,7 +116,7 @@ public class Client implements ActionListener, Runnable {
 
 	public void init() {
 		try {
-			socket = new Socket(ip, 5000);
+			socket = new Socket(ip, 5050);
 			is = socket.getInputStream();
 			os = socket.getOutputStream();
 
@@ -155,7 +155,7 @@ public class Client implements ActionListener, Runnable {
 				if (receiveMsg[0].equals(chatName)) { // 해당 사용자
 					System.exit(0);
 				} else { // 그 외의 사용자
-					jta.append(receiveMsg[0] + " 님이 종료했습니다\n");
+					jta.append("\t"+receiveMsg[0] + " 님이 종료했습니다\n");
 					jta.setCaretPosition(jta.getDocument().getLength());
 				} // else : 그 외 사용자
 			} else { // exit 가 아닐 경우
