@@ -70,7 +70,7 @@ public class TcpIpMultichatClient {
 			try {
 				in = new DataInputStream(socket.getInputStream());
 			}catch(IOException e) {
-				
+				e.printStackTrace();
 			}
 		}
 		
@@ -79,7 +79,6 @@ public class TcpIpMultichatClient {
 				try {
 					System.out.println(in.readUTF());
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

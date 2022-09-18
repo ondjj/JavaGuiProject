@@ -10,10 +10,10 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 public class TcpIpMultichatServer {
-	HashMap clients;
+	HashMap<String, DataOutputStream> clients;
 
 	TcpIpMultichatServer() {
-		clients = new HashMap();
+		clients = new HashMap<String, DataOutputStream>();
 		Collections.synchronizedMap(clients);
 	}
 
@@ -37,7 +37,7 @@ public class TcpIpMultichatServer {
 	}
 
 	void sendToAll(String msg) {
-		Iterator it = clients.keySet().iterator();
+		Iterator<String> it = clients.keySet().iterator();
 
 		while (it.hasNext()) {
 			try {
