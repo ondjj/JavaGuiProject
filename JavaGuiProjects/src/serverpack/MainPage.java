@@ -26,7 +26,6 @@ public class MainPage extends JFrame {
 		new MainPage();
 
 	}
-
 	MainPage() {
 
 		setTitle("JAVA-CHAT-PROGRAM");
@@ -52,8 +51,8 @@ public class MainPage extends JFrame {
 		// id패널과 pw 패널생성
 		idPanel = new JPanel();
 		paPanel = new JPanel();
-		la3 = new JLabel("아이디");
-		la2 = new JLabel("패스워드");
+		la3 = new JLabel("아이디 :");
+		la2 = new JLabel("비밀번호 :");
 		// id텍스트필드와 pw텍스트 필드 선언
 		id = new JTextField(10);
 		passwd = new JPasswordField(10);
@@ -79,6 +78,12 @@ public class MainPage extends JFrame {
 			String in = str.substring(dat);
 			content.append(in+"\n");
 		}
+		
+//		for (int i = 0; i < str.length(); i++) {
+//			int temp = str.indexOf(0);
+//			String dat = str.substring(temp,39);
+//			content.append(dat);
+//		}
 		JScrollPane s = new JScrollPane(content);
 		add(s);
 		setVisible(true);
