@@ -40,7 +40,7 @@ public class LoginPage {
 
 		JFrame jf = new JFrame();
 		LoginPanel lp = new LoginPanel(lp2);
-//		singupPanel sp = new singupPanel(lp2);
+		SingupPage sp = new SingupPage(lp2);
 
 		// cardLayout
 		card = new CardLayout();
@@ -48,7 +48,7 @@ public class LoginPage {
 		// cardLayout -> JPanel -> cardPanel
 		cardPanel = new JPanel(card);
 		cardPanel.add(lp.mainPanel, "Login");
-//		cardPanel.add(sp.mainPanel, "Register");
+		cardPanel.add(sp.mainPanel, "Register");
 
 		// 제공 되는 Frame에 cardPanel 추가
 		jf.add(cardPanel);
@@ -181,7 +181,8 @@ class LoginPanel extends JPanel implements ActionListener {
 			String pass = pwTextField.getText();
 
 			try {
-				String sql_query = String.format("SELECT password FROM user_info WHERE id = '%s' AND password = '%s'",
+				
+				String sql_query = String.format("SELECT pw FROM REGISTER_TABLE WHERE id = '%s' AND pw = '%s'",
 						id, pass);
 				Connection conn = lp.getConnection();
 				Statement stmt = conn.createStatement();

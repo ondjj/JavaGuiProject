@@ -31,18 +31,17 @@ public class JDBC {
 			String sql = "CREATE TABLE REGISTER_TABLE (";
 				sql += "id varchar(20) primary key,"; // id
 				sql += "pw varchar(20) not null,"; // pw
-				sql += "ckpw varchar(20) not null,"; // check pw
 				sql += "name varchar(10) not null,"; // name
 				sql += "birth varchar(8) not null,"; // birth day
-//				sql += "gender radio, not null,"; // gender
-				sql += "phone int(11) not null);";
+//				sql += "gender radio, not null,"; // gender --> SQL RADIO 처리는 어떻게?
+				sql += "phone int(11) not null)";
 				
 			// Statement 객체를 통해 sql문 실행
 			Statement stmt = conn.createStatement();
 			stmt.executeUpdate("use chat"); //chat라는 데이터 베이스에 접속
 //			stmt.executeUpdate("create table if not exists REGISTER_TABLE"); //Example 이라는 테이블이 있을 경우 삭제
 			// query 만들기
-			StringBuilder sb = new StringBuilder();
+//			StringBuilder sb = new StringBuilder();
 //			String sql = sb
 //					.append("id varchar(15) primary key,")
 //					.append("pw varchar(20) not null,")
@@ -53,7 +52,8 @@ public class JDBC {
 //					.append(");").toString();
 			
 			// Statement의 execute(String sql)메소드를 사용 sql문 실행
-			stmt.execute(sql);
+//			stmt.execute(sql);
+//			stmt.executeUpdate(sql);
 //			boolean b = stmt.execute(sql);
 //			
 //			System.out.println("b="+b);
