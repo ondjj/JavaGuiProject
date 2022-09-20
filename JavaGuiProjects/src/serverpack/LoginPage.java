@@ -30,7 +30,7 @@ public class LoginPage {
 	CardLayout card;
 
 	public static void main(String[] args) {
-
+		
 		LoginPage lp = new LoginPage();
 		lp.setFrame(lp);
 	}
@@ -79,6 +79,8 @@ public class LoginPage {
 
 class LoginPanel extends JPanel implements ActionListener {
 
+//	Client ci = new Client();
+	
 	JPanel mainPanel;
 	JTextField idTextField;
 	JPasswordField pwTextField;
@@ -191,6 +193,9 @@ class LoginPanel extends JPanel implements ActionListener {
 
 				if (pass.equals(rset.getString(1))) {
 					JOptionPane.showMessageDialog(this, "Login Success", "로그인 성공", 1);
+					ChattingServer cs = new ChattingServer();
+					Client ci = new Client();
+											
 
 				} else {
 					JOptionPane.showMessageDialog(this, "Login Failed", "로그인 실패", 1);
