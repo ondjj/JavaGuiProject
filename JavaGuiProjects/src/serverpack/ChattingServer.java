@@ -8,16 +8,17 @@ import java.util.*;
 
 import javax.swing.*;
 
-public class ChattingServer extends JFrame {
+public class ChattingServer extends LoginPage {
 	private ArrayList<MultiServerThread> list;
 	private Socket socket;
 	private JTextArea ta;
 	private JTextField tf;
+	LoginPage lp;
 
 	private ServerSocket serverSocket = null;
 
 	public ChattingServer() {
-		
+		this.lp = lp;
 //		JPanel panel3 = new JPanel();
 		setTitle("Multi Caht Server");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -47,9 +48,9 @@ public class ChattingServer extends JFrame {
 		} // catch
 	}// 생성자
 
-	public static void main(String[] args) {
-		new ChattingServer();
-	}
+//	public static void main(String[] args) {
+//		new ChattingServer();
+//	}
 
 	public class MultiServerThread extends Thread {
 		InputStream is;

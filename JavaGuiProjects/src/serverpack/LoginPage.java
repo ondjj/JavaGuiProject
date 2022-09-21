@@ -31,15 +31,15 @@ public class LoginPage extends JFrame{
 	LoginPage lp;
 	CardLayout card;
 	Container c = getContentPane();
-	public static void main(String[] args) {
-		
-		LoginPage lp = new LoginPage();
-		lp.setFrame(lp);
-
-	}
+//	public static void main(String[] args) {
+//		
+//		LoginPage lp = new LoginPage();
+//		lp.setFrame(lp);
+//
+//	}
 
 	// 기본 레이아웃 설정
-	private void setFrame(LoginPage lp2) {
+	 void setFrame(LoginPage lp2) {
 		
 		JFrame jf = new JFrame();
 		LoginPanel lp = new LoginPanel(lp2);
@@ -89,6 +89,7 @@ class LoginPanel extends JPanel implements ActionListener {
 	LoginPage lp;
 	Font font = new Font("회원가입", Font.BOLD, 30);
 	String admin = "admin";
+	boolean flag;
 
 	public LoginPanel(LoginPage lp) {
 		this.lp = lp;
@@ -194,8 +195,8 @@ class LoginPanel extends JPanel implements ActionListener {
 
 				if (pass.equals(rset.getString(1))) {
 					JOptionPane.showMessageDialog(this, "Login Success", "로그인 성공", 1);
-//					lp.card.next(new ChattingServer());
-					
+//					lp.card.next(new ChattingServer(lp));
+					flag = true;
 					
 				} else {
 					JOptionPane.showMessageDialog(this, "Login Failed", "로그인 실패", 1);
@@ -209,6 +210,8 @@ class LoginPanel extends JPanel implements ActionListener {
 			}
 			break;
 		}
+		
 	}
+
 
 }
