@@ -1,6 +1,7 @@
 package serverpack;
 
 import java.awt.CardLayout;
+import java.awt.Container;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -23,28 +24,30 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class LoginPage {
+
+public class LoginPage extends JFrame{
 
 	JPanel cardPanel;
 	LoginPage lp;
 	CardLayout card;
-
+	Container c = getContentPane();
 	public static void main(String[] args) {
 		
 		LoginPage lp = new LoginPage();
 		lp.setFrame(lp);
+
 	}
 
-	// 기본 레이아웃 설
+	// 기본 레이아웃 설정
 	private void setFrame(LoginPage lp2) {
-
+		
 		JFrame jf = new JFrame();
 		LoginPanel lp = new LoginPanel(lp2);
 		SingupPage sp = new SingupPage(lp2);
-
 		// cardLayout
 		card = new CardLayout();
-
+		
+		jf.setTitle("Multi Caht Server");
 		// cardLayout -> JPanel -> cardPanel
 		cardPanel = new JPanel(card);
 		cardPanel.add(lp.mainPanel, "Login");
@@ -57,7 +60,6 @@ public class LoginPage {
 		jf.setVisible(true);
 	}
 
-	// DB 연동 Task : Table 생성 필
 	public Connection getConnection() throws SQLException, ClassNotFoundException {
 
 		Connection conn = null;
@@ -69,7 +71,7 @@ public class LoginPage {
 		String url = "jdbc:mysql://localhost:3306/chat"; // 연결문자열, localhost - 127.0.0.1
 		String user = "root"; // 데이터베이스 ID
 		String pw = "ckdwns4028"; // 데이터베이스 PW
-		
+
 		Class.forName(driver);
 		conn = DriverManager.getConnection(url, user, pw);
 
@@ -79,8 +81,6 @@ public class LoginPage {
 
 class LoginPanel extends JPanel implements ActionListener {
 
-//	Client ci = new Client();
-	
 	JPanel mainPanel;
 	JTextField idTextField;
 	JPasswordField pwTextField;
@@ -148,8 +148,8 @@ class LoginPanel extends JPanel implements ActionListener {
 		mainPanel.add(gridBagidInfo);
 		mainPanel.add(loginPanel);
 		mainPanel.add(signupPanel);
+		
 
-		// addActionListener -- ?
 		loginButton.addActionListener(this);
 
 		signupButton.addActionListener(new ActionListener() {
@@ -165,6 +165,7 @@ class LoginPanel extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
 		JButton jb = (JButton) e.getSource();
 
 		switch (e.getActionCommand()) {
@@ -183,9 +184,9 @@ class LoginPanel extends JPanel implements ActionListener {
 			String pass = pwTextField.getText();
 
 			try {
-				
-				String sql_query = String.format("SELECT pw FROM REGISTER_TABLE WHERE id = '%s' AND pw = '%s'",
-						id, pass);
+
+				String sql_query = String.format("SELECT pw FROM REGISTER_TABLE WHERE id = '%s' AND pw = '%s'", id,
+						pass);
 				Connection conn = lp.getConnection();
 				Statement stmt = conn.createStatement();
 				ResultSet rset = stmt.executeQuery(sql_query);
@@ -193,10 +194,9 @@ class LoginPanel extends JPanel implements ActionListener {
 
 				if (pass.equals(rset.getString(1))) {
 					JOptionPane.showMessageDialog(this, "Login Success", "로그인 성공", 1);
-					ChattingServer cs = new ChattingServer();
-					Client ci = new Client();
-											
-
+//					lp.card.next(new ChattingServer());
+					
+					
 				} else {
 					JOptionPane.showMessageDialog(this, "Login Failed", "로그인 실패", 1);
 				}

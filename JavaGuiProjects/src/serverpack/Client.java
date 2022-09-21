@@ -28,7 +28,7 @@ public class Client implements ActionListener, Runnable {
 
 	public Client() {
 		// 대화명을 다이얼로그로 입력 받는다.
-		chatName = JOptionPane.showInputDialog(jframe, "닉네임을 입력하세요.", "대화명 입력 다이얼로그", JOptionPane.YES_NO_OPTION);
+		chatName = JOptionPane.showInputDialog(jframe, "닉네임을 입력하세요.", "닉네임 입력 다이얼로그", JOptionPane.YES_NO_OPTION);
 		if (chatName.length() == 0 || chatName == null) {
 			System.exit(0);
 		}

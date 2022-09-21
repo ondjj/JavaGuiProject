@@ -17,6 +17,8 @@ public class ChattingServer extends JFrame {
 	private ServerSocket serverSocket = null;
 
 	public ChattingServer() {
+		
+//		JPanel panel3 = new JPanel();
 		setTitle("Multi Caht Server");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ta = new JTextArea();
