@@ -48,9 +48,9 @@ public class ChattingServer extends LoginPage {
 		} // catch
 	}// 생성자
 
-//	public static void main(String[] args) {
-//		new ChattingServer();
-//	}
+	public static void main(String[] args) {
+		new ChattingServer();
+	}
 
 	public class MultiServerThread extends Thread {
 		InputStream is;

@@ -31,6 +31,12 @@ public class LoginPage extends JFrame{
 	LoginPage lp;
 	CardLayout card;
 	Container c = getContentPane();
+	
+	public boolean getFlag(boolean flag) {
+		
+		return flag;
+		
+	}
 //	public static void main(String[] args) {
 //		
 //		LoginPage lp = new LoginPage();
@@ -89,11 +95,13 @@ class LoginPanel extends JPanel implements ActionListener {
 	LoginPage lp;
 	Font font = new Font("회원가입", Font.BOLD, 30);
 	String admin = "admin";
-	boolean flag;
+	String status = "";
+	
+			
 
 	public LoginPanel(LoginPage lp) {
 		this.lp = lp;
-
+		
 		mainPanel = new JPanel();
 		mainPanel.setLayout(new GridLayout(5, 1));
 
@@ -157,9 +165,8 @@ class LoginPanel extends JPanel implements ActionListener {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				lp.card.next(lp.cardPanel);
 
+				lp.card.next(lp.cardPanel);
 			}
 		});
 	}
@@ -192,11 +199,18 @@ class LoginPanel extends JPanel implements ActionListener {
 				Statement stmt = conn.createStatement();
 				ResultSet rset = stmt.executeQuery(sql_query);
 				rset.next();
-
+				
+//				LoginPage lp = new LoginPage();
+				
 				if (pass.equals(rset.getString(1))) {
 					JOptionPane.showMessageDialog(this, "Login Success", "로그인 성공", 1);
+//					System.out.println(e.getActionCommand()); 
+//					status = e.getActionCommand();
 //					lp.card.next(new ChattingServer(lp));
-					flag = true;
+//					Client ci = new Client();
+//					Main.showServer(flag);
+				
+//					lp.getFlag(flag);
 					
 				} else {
 					JOptionPane.showMessageDialog(this, "Login Failed", "로그인 실패", 1);
@@ -205,13 +219,16 @@ class LoginPanel extends JPanel implements ActionListener {
 				JOptionPane.showMessageDialog(this, "Login Failed", "로그인 실패", 1);
 				System.out.println("SQLException" + ex);
 			} catch (ClassNotFoundException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			break;
 		}
 		
+		System.out.println(status);
+		if(e.getActionCommand().equals("로그인")) {
+		}
+		status = "로그인";
+
 	}
-
-
+//	System.out.println(status);
 }
