@@ -60,14 +60,14 @@ public class SingupPage extends JPanel {
 		JLabel birthLabel = new JLabel("생년월일 : ");
 		JLabel sexLabel = new JLabel("성별 : ");
 		JLabel phoneLabel = new JLabel("핸드폰번호 : ");
-
+		
 		idTf = new JTextField(15);
 		passTf = new JPasswordField(15);
 		passReTf = new JPasswordField(15);
 		nameTf = new JTextField(15);
 		yearTf = new JTextField(4);
 		phoneTf = new JTextField(11);
-
+		TextHint hint = new TextHint(yearTf, "95");
 		monthComboBox = new JComboBox<String>(
 				new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" });
 		dayComboBox = new JComboBox<String>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10",
