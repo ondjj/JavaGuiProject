@@ -15,6 +15,7 @@ public class ChattingServer extends LoginPage {
 	private JTextArea ta;
 	private JTextField tf;
 	LoginPage lp;
+	private JFrame jframe; // 윈도우창
 
 	private ServerSocket serverSocket = null;
 
@@ -32,11 +33,15 @@ public class ChattingServer extends LoginPage {
 		setVisible(true);
 
 		list = new ArrayList<MultiServerThread>();
+		
+		String setPort = JOptionPane.showInputDialog(jframe, "서버 포트를 입력하세요.", "포트입력 다이얼로그", JOptionPane.YES_NO_OPTION);
+		int port = Integer.parseInt(setPort);
+		
 		try {
-			ServerSocket serverSocket = new ServerSocket(5050);
+			ServerSocket serverSocket = new ServerSocket(port);
 			MultiServerThread mst = null;
 			boolean isStop = true;
-			tf.setText("Server is All Clean");
+			tf.setText("Server is All Clean - port :" + port);
 			System.out.println("isStop : " + isStop);
 			while (isStop) {
 				socket = serverSocket.accept();

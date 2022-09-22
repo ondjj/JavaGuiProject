@@ -13,9 +13,9 @@ public class Main {
 	}
 	
 	public void showClient(LoginPage loginPage) {
-		loginPage.dispose();
 		Client ci = new Client();
 		ci.init();
+//		lp.flag = false;
 	}
 
 }

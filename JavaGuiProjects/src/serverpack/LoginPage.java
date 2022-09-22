@@ -34,6 +34,7 @@ public class LoginPage extends JFrame{
 	LoginPanel lgp;
 	CardLayout card;
 	Container c = getContentPane();
+	boolean flag = true;
 	
 	// 기본 레이아웃 설정
 	 void setFrame(LoginPage lp2) {
@@ -54,7 +55,7 @@ public class LoginPage extends JFrame{
 		jf.add(cardPanel);
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jf.setSize(500, 700);
-		jf.setVisible(true);
+		jf.setVisible(flag);
 	}
 
 	public Connection getConnection() throws SQLException, ClassNotFoundException {
@@ -181,8 +182,8 @@ class LoginPanel extends JPanel implements ActionListener {
 				
 				if (pass.equals(rset.getString(1))) {
 					JOptionPane.showMessageDialog(this, "Login Success", "로그인 성공", 1);
-					lp.dispose();
 					T.showClient(lp);
+					lp.flag=false;
 					
 				} else {
 					JOptionPane.showMessageDialog(this, "Login Failed", "로그인 실패", 1);

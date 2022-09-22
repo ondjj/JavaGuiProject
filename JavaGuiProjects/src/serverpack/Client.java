@@ -8,7 +8,6 @@ import java.net.*;
 import javax.swing.*;
 
 public class Client implements ActionListener, Runnable {
-	private static final String SERVER_IP = "127.0.0.1";
 	// 멤버 변수 정의
 	private Socket socket; // 소켓
 	private JFrame jframe; // 윈도우창
@@ -20,6 +19,8 @@ public class Client implements ActionListener, Runnable {
 	private String chatName; // 닉네임(대화명) 저장할 변수
 	private JButton jbtn; // 종료 버튼 준비
 
+	private String SERVER_IP = JOptionPane.showInputDialog(jframe, "Server IP를 입력하세요.", "IP 입력 다이얼로그", JOptionPane.YES_NO_OPTION);;
+	
 	InputStream is;
 	OutputStream os;
 	BufferedReader br_in;
@@ -27,13 +28,17 @@ public class Client implements ActionListener, Runnable {
 	PrintWriter pw = null;
 
 	public Client() {
+		
 		// 대화명을 다이얼로그로 입력 받는다.
 		chatName = JOptionPane.showInputDialog(jframe, "닉네임을 입력하세요.", "닉네임 입력 다이얼로그", JOptionPane.YES_NO_OPTION);
 		if (chatName.length() == 0 || chatName == null) {
 			System.exit(0);
 		}
-
+		
 		ip = SERVER_IP; // IP 주소
+		
+//		TextHint hint = new TextHint(SERVER_IP, "95");
+		
 		// 대화명
 		jframe = new JFrame("Multi Chat Service Program");
 
