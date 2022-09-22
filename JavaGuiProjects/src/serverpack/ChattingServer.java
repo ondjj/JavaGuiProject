@@ -9,6 +9,7 @@ import java.util.*;
 import javax.swing.*;
 
 public class ChattingServer extends LoginPage {
+	private static final long serialVersionUID = -551553759319169328L;
 	private ArrayList<MultiServerThread> list;
 	private Socket socket;
 	private JTextArea ta;
@@ -18,7 +19,7 @@ public class ChattingServer extends LoginPage {
 	private ServerSocket serverSocket = null;
 
 	public ChattingServer() {
-		this.lp = lp;
+//		this.lp = lp;
 //		JPanel panel3 = new JPanel();
 		setTitle("Multi Caht Server");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

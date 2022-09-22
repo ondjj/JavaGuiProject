@@ -7,6 +7,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -22,6 +23,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 
@@ -29,21 +31,10 @@ public class LoginPage extends JFrame{
 
 	JPanel cardPanel;
 	LoginPage lp;
+	LoginPanel lgp;
 	CardLayout card;
 	Container c = getContentPane();
 	
-	public boolean getFlag(boolean flag) {
-		
-		return flag;
-		
-	}
-//	public static void main(String[] args) {
-//		
-//		LoginPage lp = new LoginPage();
-//		lp.setFrame(lp);
-//
-//	}
-
 	// 기본 레이아웃 설정
 	 void setFrame(LoginPage lp2) {
 		
@@ -87,6 +78,7 @@ public class LoginPage extends JFrame{
 
 class LoginPanel extends JPanel implements ActionListener {
 
+//	private static final long serialVersionUID = -1747827433971979723L;
 	JPanel mainPanel;
 	JTextField idTextField;
 	JPasswordField pwTextField;
@@ -95,13 +87,11 @@ class LoginPanel extends JPanel implements ActionListener {
 	LoginPage lp;
 	Font font = new Font("회원가입", Font.BOLD, 30);
 	String admin = "admin";
-	String status = "";
+	Main T = new Main();
 	
-			
-
 	public LoginPanel(LoginPage lp) {
 		this.lp = lp;
-		
+
 		mainPanel = new JPanel();
 		mainPanel.setLayout(new GridLayout(5, 1));
 
@@ -170,27 +160,16 @@ class LoginPanel extends JPanel implements ActionListener {
 			}
 		});
 	}
-
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
 		JButton jb = (JButton) e.getSource();
-
-		switch (e.getActionCommand()) {
-
-		case "일반":
-			userMode = "일반";
-			break;
-
-		case "관리자":
-			userMode = "관리자";
-			break;
-
-		case "로그인":
-
+		
+		if(e.getActionCommand().equals("로그인")) {
 			String id = idTextField.getText();
 			String pass = pwTextField.getText();
-
+			
 			try {
 
 				String sql_query = String.format("SELECT pw FROM REGISTER_TABLE WHERE id = '%s' AND pw = '%s'", id,
@@ -200,17 +179,10 @@ class LoginPanel extends JPanel implements ActionListener {
 				ResultSet rset = stmt.executeQuery(sql_query);
 				rset.next();
 				
-//				LoginPage lp = new LoginPage();
-				
 				if (pass.equals(rset.getString(1))) {
 					JOptionPane.showMessageDialog(this, "Login Success", "로그인 성공", 1);
-//					System.out.println(e.getActionCommand()); 
-//					status = e.getActionCommand();
-//					lp.card.next(new ChattingServer(lp));
-//					Client ci = new Client();
-//					Main.showServer(flag);
-				
-//					lp.getFlag(flag);
+					lp.dispose();
+					T.showClient(lp);
 					
 				} else {
 					JOptionPane.showMessageDialog(this, "Login Failed", "로그인 실패", 1);
@@ -221,14 +193,19 @@ class LoginPanel extends JPanel implements ActionListener {
 			} catch (ClassNotFoundException e1) {
 				e1.printStackTrace();
 			}
-			break;
+			
 		}
-		
-		System.out.println(status);
-		if(e.getActionCommand().equals("로그인")) {
-		}
-		status = "로그인";
 
+//		switch (e.getActionCommand()) {
+//
+//		case "일반":
+//			userMode = "일반";
+//			break;
+//
+//		case "관리자":
+//			userMode = "관리자";
+//			break;
 	}
-//	System.out.println(status);
+
+		
 }
