@@ -22,7 +22,7 @@ public class JDBC {
 			String url = "jdbc:mysql://localhost:3306/chat";
 			
 			String user = "root"; // 데이터베이스 ID
-			String pw = "ckdwns4028"; // 데이터베이스 PW
+			String pw = "1234"; // 데이터베이스 PW
 			
 			Class.forName(driver);
 			conn = DriverManager.getConnection(url, user, pw);
